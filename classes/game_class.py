@@ -18,26 +18,26 @@ transitions = [
 machine = Machine(lump, states=states, transitions=transitions, initial='default')
 
 class Handler:
+
     def __init__(self) -> None:
         self.fsm: Matter = None
-        self.command: str = ""
+        self.update: str = None
         self.handlers = []
+        self.decorators = []
+        self.funcs = []
 
 
     def filter_update(self, states: list[str] = [], commands: list[str] = []):
         def real_decorator(func):
+            self.decorators.append(real_decorator)
+            self.funcs.append(func)
             @wraps(func)
             def wrapper(*args, **kwargs):
-                if (self.fsm.state in states or not states) and (self.command  in commands or not commands):
+                if (self.fsm.state in states or not states) and (self.update  in commands or not commands):
                     return func(*args, **kwargs)
                 return None
             return wrapper
-
-        return real_decorator
-        
-
-
-
+        return real_decorator     
 
 class Game:
     def __init__(self) -> None:
