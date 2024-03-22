@@ -46,6 +46,7 @@ def guess_letter(game: classes.Game):
             lump.end()
             game.clear()
             print(LEXICON_RU["wanna_play"])
+            return True
     else:
         game.used_letters.append(letter)
         print(man[game.mistakes])

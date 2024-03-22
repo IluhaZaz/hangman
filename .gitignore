@@ -1,3 +1,4 @@
 .vs/
 hangman/
 __pycache__/
+.venv/
