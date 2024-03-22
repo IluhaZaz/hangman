@@ -67,6 +67,8 @@ if __name__ == "__main__":
 
     game = classes.Game()
 
+    print(LEXICON_RU["first_game"])
+
     while True:
 
         update = input()
